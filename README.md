@@ -1,5 +1,7 @@
 # jenkins-tutorial
 
+## Install Jenkins
+
 Install Jenkins on the AWS EC2 Amazon Linux instance, as root.
 ```
 $ sudo -i
@@ -24,8 +26,8 @@ Enter the job name and select `Freestyle project`.
 
 Under `Source Code Management` tab:
 - Select Git and 
--- for `Repositories -> Repository URL` enter `https://github.com/kurianinc/docker-java-sample.git`
--- for `Branches to build -> Branch Specifier` replace `master` with name of your branch you created during Git tutorial.
+* for `Repositories -> Repository URL` enter `https://github.com/kurianinc/docker-java-sample.git`
+* for `Branches to build -> Branch Specifier` replace `master` with name of your branch you created during Git tutorial.
 
 Under `Build Triggers` tab:
 - Check `Poll SCM` and in the `Schedule` field enter  `* * * * *`. This means Jenkins is scheduled to poll the Git repo/branch every minute for a changes. If there would be any change Jenkins will kick off a build.
