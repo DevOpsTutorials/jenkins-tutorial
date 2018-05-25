@@ -43,3 +43,22 @@ mvn exec:java
 
 Check in changes to `docker-java-sample` repo, as you have learned in the Git tutorial, and verify that Jenkins picks that up and builds.
 
+## Install Artifactory plugin
+
+Click on `Jenkins` -> `Manage Jenkins` -> `Manage Plugins`
+
+Select `Available` tab and filter by `Artifactory`. Select `Artifactory` and click the button `Install without Restart`.
+
+Check `Restart Jenkins when installation is complete and no jobs are running`. This will trigger restart of Jenkins instance. Log back in when the instance is back online again.
+
+## Add Artifactory to Jenkins
+
+Click `Jenkins` -> `Manage Jenkins` -> `Configure System`.
+
+Scroll down to the section `Artifactory`.
+
+In `Artifactory servers`:
+- Enter `bootcamp-artifactory` for `Server ID`
+- Enter `http://34.212.154.26:8081/artifactory` for `URL`.
+- For `Default Deployer Credentials` enter Artifactory admin user creds.
+- Click `Test Connection` button. You will see a message `Found Artifactory 6.0.1`.
