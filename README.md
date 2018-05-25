@@ -76,5 +76,14 @@ Check `Build Environment` -> `Generic-Artifactory Integration`.
 - Pick `Job configuration` for `Upload spec source`
 - In `Spec` field enter following configuration:
 ```
-
+{
+    "files": [
+        {
+            "pattern": "target/*.jar",
+            "target": "bootcamp/builds/libs/"
+        }
+    ]
+}
 ```
+Click `Save`.
+
