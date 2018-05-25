@@ -87,3 +87,39 @@ Check `Build Environment` -> `Generic-Artifactory Integration`.
 ```
 Click `Save`.
 
+## Enable build notification
+
+Click `Manage Jenkins` -> `Configure System`.
+
+Scroll down to `Jenkins Location`.
+- Update `System Admin e-mail address` to a valid email address. Example: `Thomas TK <thomas123@gmail.com>`
+
+Click `Save` button.
+
+Make sure that `sendmail` service is running on the host:
+```
+$ sudo service sendmail status
+sendmail (pid  2750) is running...
+sm-client (pid  2759) is running...
+```
+
+Click on one of the build jobs - `simple-build` or `artifactory-integration`.
+
+Click `Configure` on the left pane.
+
+Scroll down to `Post-build Actions`. Pick `E-Mail notification`.
+- Enter a valid e-mail address in the `Recipients` field.
+- Make sure `Send e-mail for every unstable build` is checked.
+
+Click `Save` button.
+
+Add some bug by making a syntax error in `src/main/java/org/examples/java/App.java` and check that change into your branch.
+
+Wait for the build to get triggered and the email notification be sent. The email might be in the Spam folder.
+
+Fix the syntax error and repeat the check in step and check if you get a `back to normal` notification.
+
+E-mail notification format can be customized by changing the configuration info at `Manage Jenkins` -> `System Configuration` -> `Extended E-mail Notification`.
+
+
+
