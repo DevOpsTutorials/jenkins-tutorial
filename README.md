@@ -22,7 +22,7 @@ Create a new admin user after logged in to Jenkins.
 
 Click on `New Item`
 
-Enter the job name and select `Freestyle project`.
+Enter `simple-build` as the job name and select `Freestyle project`.
 
 Under `Source Code Management` tab:
 - Select Git and 
@@ -38,3 +38,8 @@ Under `Build` tab:
 mvn package
 mvn exec:java
 ```
+
+`Save` the job. In a minute you will see that Jenkins would trigger a build. You can also kick off a build manually by clicking on the `Build Now` link.
+
+Check in changes to `docker-java-sample` repo, as you have learned in the Git tutorial, and verify that Jenkins picks that up and builds.
+
