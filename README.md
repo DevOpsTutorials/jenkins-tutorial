@@ -62,3 +62,19 @@ In `Artifactory servers`:
 - Enter `http://34.212.154.26:8081/artifactory` for `URL`.
 - For `Default Deployer Credentials` enter Artifactory admin user creds.
 - Click `Test Connection` button. You will see a message `Found Artifactory 6.0.1`.
+
+## Create job with Artifactory integration
+
+Click on `New Item`
+
+Enter `artifactory-integration` as the job name and select `Freestyle project`.
+
+In `Copy from` enter `simple-build` and click `OK` button.
+
+Check `Build Environment` -> `Generic-Artifactory Integration`.
+- Make sure `Artifactory upload server` field is filled with the Artifactory URL.
+- Pick `Job configuration` for `Upload spec source`
+- In `Spec` field enter following configuration:
+```
+
+```
