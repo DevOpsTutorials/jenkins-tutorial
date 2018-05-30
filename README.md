@@ -15,6 +15,7 @@ Access Jenkins UI on the browser at `http://IP-ADDRESS:8080`. When prompted for 
 ```
 $ cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
+Click "Install Suggested Plugins" button.
 
 Create a new admin user after logged in to Jenkins.
 
@@ -25,7 +26,7 @@ Click on `New Item`
 Enter `simple-build` as the job name and select `Freestyle project`.
 
 Under `Source Code Management` tab:
-- Select Git and 
+- Select Git and
    - for `Repositories -> Repository URL` enter `https://github.com/kurianinc/docker-java-sample.git`
    - for `Branches to build -> Branch Specifier` replace `master` with name of your branch you created during Git tutorial.
 
@@ -41,7 +42,9 @@ mvn exec:java
 
 `Save` the job. In a minute you will see that Jenkins would trigger a build. You can also kick off a build manually by clicking on the `Build Now` link.
 
-Check in changes to `docker-java-sample` repo, as you have learned in the Git tutorial, and verify that Jenkins picks that up and builds.
+To view the build output, click on the Build Number in the Build History and then click on the `Console Output` link.
+
+Check in changes to `docker-java-sample` repo, as you have learned in the Git tutorial, and verify that Jenkins picks that up and builds. (Make changes to the `src/main/java/org/examples/java/App.java` file from the Git Tutorial on the branch you created, commit the changes, and push the changes.)
 
 ## Install Artifactory plugin
 
@@ -55,26 +58,26 @@ Check `Restart Jenkins when installation is complete and no jobs are running`. T
 
 Click `Jenkins` -> `Manage Jenkins` -> `Configure System`.
 
-Scroll down to the section `Artifactory`.
+Scroll down to the section `Artifactory`. Click the "Add Artifactory Server" button.
 
 In `Artifactory servers`:
 - Enter `bootcamp-artifactory` for `Server ID`
-- Enter `http://34.212.154.26:8081/artifactory` for `URL`.
+- Enter `http://34.212.154.26:8081/artifactory` (later change to own URL when Artifactory is set up) for `URL`.
 - For `Default Deployer Credentials` enter Artifactory admin user creds.
 - Click `Test Connection` button. You will see a message `Found Artifactory 6.0.1`.
+
+Check out the Artifactory Tutorial Repository and follow those steps.
 
 ## Create job with Artifactory integration
 
 Click on `New Item`
 
-Enter `artifactory-integration` as the job name and select `Freestyle project`.
+Enter `artifactory-integration` as the job name and select `Freestyle project`, do not click 'OK' yet- in `Copy from` enter `simple-build` and click `OK` button.
 
-In `Copy from` enter `simple-build` and click `OK` button.
-
-Check `Build Environment` -> `Generic-Artifactory Integration`.
+Check `Build Environment` (top middle tab on top) -> `Generic-Artifactory Integration`.
 - Make sure `Artifactory upload server` field is filled with the Artifactory URL.
 - Pick `Job configuration` for `Upload spec source`
-- In `Spec` field enter following configuration:
+- In `Spec` field for Upload, enter following configuration:
 ```
 {
     "files": [
@@ -89,7 +92,7 @@ Click `Save`.
 
 ## Enable build notification
 
-Click `Manage Jenkins` -> `Configure System`.
+Click `Manage Jenkins` -> `Configure System` (top item).
 
 Scroll down to `Jenkins Location`.
 - Update `System Admin e-mail address` to a valid email address. Example: `Thomas TK <thomas123@gmail.com>`
@@ -107,7 +110,7 @@ Click on one of the build jobs - `simple-build` or `artifactory-integration`.
 
 Click `Configure` on the left pane.
 
-Scroll down to `Post-build Actions`. Pick `E-Mail notification`.
+Scroll down to `Post-build Actions` (right most tab on top). Pick `E-Mail notification`.
 - Enter a valid e-mail address in the `Recipients` field.
 - Make sure `Send e-mail for every unstable build` is checked.
 
